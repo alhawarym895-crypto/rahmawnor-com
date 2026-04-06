@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحمة ونور - موقع إسلامي متخصص</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f5f5f5;
+            --text-dark: #333;
+            --text-light: #fff;
+            --blue: #4a90e2;
+            --secondary-blue: #357abd;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .gold-text {
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .animated-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="mosaic" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M50,0 L100,50 L50,100 L0,50 Z" fill="rgba(212,175,55,0.1)" stroke="rgba(212,175,55,0.3)"/></pattern></defs><rect width="1200" height="600" fill="%231a2a3a"/><rect width="1200" height="600" fill="url(%23mosaic)"/></svg>') repeat;
+            animation: slideBackground 20s linear infinite;
+            background-size: 200px 200px;
+        }
+
+        @keyframes slideBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: 200px 200px; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container & Section */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .section {
+            background: #2a2a2a;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 3px solid var(--gold);
+            padding-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Prayer Times Grid */
+        .prayer-times-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .prayer-card {
+            background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+            color: #000;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .prayer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .prayer-card i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .prayer-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .prayer-time {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        /* Qibla Direction */
+        .qibla-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .compass {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #d4af37 0%, #a68b35 100%);
+            border: 5px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .compass-needle {
+            position: absolute;
+            width: 4px;
+            height: 150px;
+            background: linear-gradient(to bottom, #ff4444, transparent);
+            transform-origin: bottom center;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .compass-directions {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .direction {
+            position: absolute;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .direction.north { top: 10%; }
+        .direction.east { right: 10%; }
+        .direction.south { bottom: 10%; }
+        .direction.west { left: 10%; }
+
+        .qibla-info {
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Ablution Steps */
+        .ablution-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .step-card h3 {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .content-card {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-right: 5px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .content-card {
+            background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
+            color: var(--text-light);
+        }
+
+        .content-card:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .content-card h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Supplications */
+        .supplications-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .supplication-card {
+            background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+            color: #000;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .supplication-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .supplication-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .supplication-card p {
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* Settings Panel */
+        .settings-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            transition: right 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        body.dark-mode .settings-panel {
+            background: #2a2a2a;
+            color: var(--text-light);
+        }
+
+        .settings-panel.active {
+            right: 0;
+        }
+
+        .settings-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--blue);
+        }
+
+        .setting-item {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .setting-item label {
+            font-weight: 500;
+        }
+
+        .setting-item input[type="range"] {
+            width: 150px;
+        }
+
+        .setting-item select {
+            padding: 0.5rem;
+            border: 2px solid var(--blue);
+            border-radius: 5px;
+            background: white;
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .setting-item select {
+            background: #1a1a1a;
+            color: var(--text-light);
+        }
+
+        .switch {
+            width: 50px;
+            height: 25px;
+            appearance: none;
+            background: #ccc;
+            border-radius: 12px;
+            cursor: pointer;
+            outline: none;
+            transition: background 0.3s;
+        }
+
+        .switch:checked {
+            background: var(--blue);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        body.dark-mode .modal-content {
+            background-color: #2a2a2a;
+            color: var(--text-light);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .memorial-names {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+
+        body.dark-mode .memorial-names {
+            background: #1a1a1a;
+        }
+
+        .memorial-names p {
+            margin: 0.5rem 0;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .memorial-text {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        /* Admin Modal */
+        .admin-modal {
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .admin-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .admin-section {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        body.dark-mode .admin-section {
+            background: #1a1a1a;
+        }
+
+        .admin-section h3 {
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+
+        .admin-btn {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.3);
+        }
+
+        .admin-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border: 2px solid var(--blue);
+            border-radius: 8px;
+            resize: vertical;
+            font-family: inherit;
+            background: white;
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .admin-textarea {
+            background: #1a1a1a;
+            color: var(--text-light);
+            border-color: var(--gold);
+        }
+
+        /* Buttons */
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
+            color: #000;
+            margin-top: 1.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: #ccc;
+            color: #000;
+        }
+
+        .btn-secondary:hover {
+            background: #bbb;
+        }
+
+        /* Memorial Section */
+        .memorial-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 4rem 0;
+        }
+
+        .memorial-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .memorial-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .memorial-item {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-right: 3px solid var(--gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .memorial-prayer {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .admin-text {
+            font-size: 1rem;
+            color: #ddd;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            border-top: 3px solid var(--gold);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-menu ul {
+                gap: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .prayer-times-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .prayer-card {
+                padding: 1rem;
+            }
+
+            .prayer-card i {
+                font-size: 2rem;
+            }
+
+            .compass {
+                width: 250px;
+                height: 250px;
+            }
+
+            .compass-needle {
+                height: 120px;
+            }
+
+            .settings-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .memorial-section {
+                padding: 2rem 1rem;
+            }
+
+            .memorial-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                height: 200px;
+            }
+
+            .hero-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .prayer-times-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Modal ترحيبي -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>هذا الموقع <span class="gold-text">رحمة ونور</span></h2>
+            <p>على أرواح الموتى الراحلين</p>
+            <div class="memorial-names">
+                <p><strong>الحاج رمضان السعيد الهواري</strong></p>
+                <p><strong>الحاج خير السعيد الهواري</strong></p>
+                <p><strong>الحاج حمدي السعيد الهواري</strong></p>
+                <p><strong>الحاجة عزيزة سعيد حسين</strong></p>
+            </div>
+            <p class="memorial-text">ادعوا لهم بالرحمة والمغفرة</p>
+            <button id="closeModal" class="btn-primary">ابدأ الآن</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1 class="gold-text">رحمة ونور</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#home" class="nav-link">الرئيسية</a></li>
+                    <li><a href="#prayer-times" class="nav-link">أوقات الصلاة</a></li>
+                    <li><a href="#qibla" class="nav-link">القبلة</a></li>
+                    <li><a href="#ablution" class="nav-link">الوضوء</a></li>
+                    <li><a href="#prayers" class="nav-link">الصلوات</a></li>
+                    <li><a href="#quran" class="nav-link">القرآن</a></li>
+                    <li><a href="#prophets" class="nav-link">قصص الأنبياء</a></li>
+                    <li><a href="#supplications" class="nav-link">الأدعية</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <button id="darkModeToggle" class="control-btn" title="الوضع الليلي">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="settingsBtn" class="control-btn" title="الإعدادات">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button id="adminBtn" class="control-btn" title="لوحة التحكم">
+                    <i class="fas fa-lock"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel">
+        <div class="settings-content">
+            <h3>الإعدادات</h3>
+            <div class="setting-item">
+                <label>الوضع الليلي</label>
+                <input type="checkbox" id="darkModeSwitch" class="switch">
+            </div>
+            <div class="setting-item">
+                <label>حجم الخط</label>
+                <input type="range" id="fontSize" min="12" max="20" value="16">
+            </div>
+            <div class="setting-item">
+                <label>اللغة</label>
+                <select id="language">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <button id="closeSettings" class="btn-secondary">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="animated-background"></div>
+        <div class="hero-content">
+            <h2 class="gold-text">بسم الله الرحمن الرحيم</h2>
+            <p class="hero-subtitle">سبحان الله وبحمده، سبحان الله العظيم</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Prayer Times Section -->
+        <section id="prayer-times" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-clock gold-text"></i> أوقات الصلاة</h2>
+            </div>
+            <div class="prayer-times-grid">
+                <div class="prayer-card">
+                    <i class="fas fa-sunrise"></i>
+                    <h3>الفجر</h3>
+                    <p class="prayer-time" id="fajr-time">05:30 AM</p>
+                </div>
+                <div class="prayer-card">
+                    <i class="fas fa-sun"></i>
+                    <h3>الشروق</h3>
+                    <p class="prayer-time" id="sunrise-time">06:45 AM</p>
+                </div>
+                <div class="prayer-card">
+                    <i class="fas fa-cloud-sun"></i>
+                    <h3>الظهر</h3>
+                    <p class="prayer-time" id="dhuhr-time">12:30 PM</p>
+                </div>
+                <div class="prayer-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>العصر</h3>
+                    <p class="prayer-time" id="asr-time">03:45 PM</p>
+                </div>
+                <div class="prayer-card">
+                    <i class="fas fa-sunset"></i>
+                    <h3>المغرب</h3>
+                    <p class="prayer-time" id="maghrib-time">06:30 PM</p>
+                </div>
+                <div class="prayer-card">
+                    <i class="fas fa-moon"></i>
+                    <h3>العشاء</h3>
+                    <p class="prayer-time" id="isha-time">08:00 PM</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Qibla Direction Section -->
+        <section id="qibla" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-compass gold-text"></i> اتجاه القبلة</h2>
+            </div>
+            <div class="qibla-container">
+                <div class="compass">
+                    <div class="compass-needle" id="compassNeedle"></div>
+                    <div class="compass-directions">
+                        <span class="direction north">الشمال</span>
+                        <span class="direction east">الشرق</span>
+                        <span class="direction south">الجنوب</span>
+                        <span class="direction west">الغرب</span>
+                    </div>
+                </div>
+                <p id="qibla-direction" class="qibla-info">جاري تحديد اتجاه القبلة...</p>
+            </div>
+        </section>
+
+        <!-- Ablution Guide Section -->
+        <section id="ablution" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-water gold-text"></i> خطوات الوضوء</h2>
+            </div>
+            <div class="ablution-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>النية</h3>
+                    <p>استشعر نية الوضوء لقبول الصلاة</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>غسل الوجه</h3>
+                    <p>اغسل وجهك من منبت الشعر إلى الذقن</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>غسل اليدين</h3>
+                    <p>اغسل يديك من الأصابع إلى المرفقين مرتين أو ثلاثاً</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>المسح على الرأس</h3>
+                    <p>امسح رأسك من مقدمته إلى مؤخرته</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3>مسح الأذنين</h3>
+                    <p>امسح أذنيك بنفس ماء الرأس</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3>غسل الأرجل</h3>
+                    <p>اغسل قدميك من الأصابع إلى الكعبين مرتين أو ثلاثاً</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prayers Section -->
+        <section id="prayers" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-prayer-hands gold-text"></i> الصلوات</h2>
+            </div>
+            <div class="prayers-grid">
+                <div class="content-card">
+                    <h3>صلاة الصباح</h3>
+                    <p>صلاة الفجر هي أول الصلوات المفروضة في اليوم. عن أبي هريرة قال: قال رسول الله صلى الله عليه وسلم: "أثقل الصلوات على المنافقين صلاة العشاء والفجر"</p>
+                </div>
+                <div class="content-card">
+                    <h3>صلاة المساء</h3>
+                    <p>تشمل صلوات العصر والمغرب والعشاء. عن عائشة رضي الله عنها: "كان النبي صلى الله عليه وسلم يصلي من الليل في بيته"</p>
+                </div>
+                <div class="content-card">
+                    <h3>الصلوات الخمس</h3>
+                    <p>الصلوات المفروضة على المسلمين هي: الفجر، الظهر، العصر، المغرب، والعشاء. وهي عماد الدين وأساس العبادة في الإسلام.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quran Section -->
+        <section id="quran" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-book gold-text"></i> القرآن الكريم</h2>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>قراءة القرآن</h3>
+                    <p>القرآن الكريم هو كلام الله المنزل على محمد صلى الله عليه وسلم، وهو آخر الكتب السماوية. آياته تتضمن الهداية والرحمة لجميع الناس.</p>
+                </div>
+                <div class="content-card">
+                    <h3>فضائل تلاوة القرآن</h3>
+                    <p>عن أبي موسى الأشعري عن النبي صلى الله عليه وسلم قال: "الذي يقرأ القرآن وهو ماهر به مع السفرة الكرام البررة"</p>
+                </div>
+                <div class="content-card">
+                    <h3>أحكام التجويد</h3>
+                    <p>تجويد القرآن هو إخراج كل حرف من مخرجه وإعطاؤه حقه. وهو واجب على كل مسلم يتلو القرآن الكريم.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prophets Stories Section -->
+        <section id="prophets" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-users gold-text"></i> قصص الأنبياء</h2>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>سيدنا محمد صلى الله عليه وسلم</h3>
+                    <p>محمد بن عبدالله هو خاتم الأنبياء والمرسلين. ولد في مكة المكرمة وأرسل بالإسلام رحمة للعالمين.</p>
+                </div>
+                <div class="content-card">
+                    <h3>سيدنا إبراهيم عليه السلام</h3>
+                    <p>إبراهيم عليه السلام هو خليل الرحمن وأبو الأنبياء. دعا قومه إلى التوحيد والإيمان بالله الواحد.</p>
+                </div>
+                <div class="content-card">
+                    <h3>سيدنا موسى عليه السلام</h3>
+                    <p>موسى عليه السلام أرسل إلى بني إسرائيل بالتوراة. حمل عصاه وأنقذ قومه من استعباد فرعون وجنوده.</p>
+                </div>
+                <div class="content-card">
+                    <h3>سيدنا عيسى عليه السلام</h3>
+                    <p>عيسى عليه السلام هو كلمة الله وروحه. بشّر الناس برسالة التوحيد والتسامح والرحمة.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supplications Section -->
+        <section id="supplications" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-hands-praying gold-text"></i> الأدعية</h2>
+            </div>
+            <div class="supplications-list">
+                <div class="supplication-card">
+                    <h3>دعاء الصباح</h3>
+                    <p>"اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور"</p>
+                </div>
+                <div class="supplication-card">
+                    <h3>دعاء المساء</h3>
+                    <p>"اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير"</p>
+                </div>
+                <div class="supplication-card">
+                    <h3>دعاء الاستيقاظ</h3>
+                    <p>"الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور"</p>
+                </div>
+                <div class="supplication-card">
+                    <h3>دعاء قبل النوم</h3>
+                    <p>"اللهم أسلمت وجهي إليك وفوضت أمري إليك وألجأت ظهري إليك رغبة ورهبة إليك"</p>
+                </div>
+                <div class="supplication-card">
+                    <h3>دعاء للموتى</h3>
+                    <p>"اللهم اغفر لهم وارحمهم وعافهم واعف عنهم وأكرم نزلهم ووسع مدخلهم"</p>
+                </div>
+                <div class="supplication-card">
+                    <h3>دعاء العفو</h3>
+                    <p>"اللهم إنك عفو تحب العفو فاعف عنا"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memorial Section -->
+        <section class="memorial-section">
+            <div class="memorial-content">
+                <h2 class="gold-text">في ذكرهم رحمة ونور</h2>
+                <div class="memorial-list">
+                    <div class="memorial-item">الحاج رمضان السعيد الهواري</div>
+                    <div class="memorial-item">الحاج خير السعيد الهواري</div>
+                    <div class="memorial-item">الحاج حمدي السعيد الهواري</div>
+                    <div class="memorial-item">الحاجة عزيزة سعيد حسين</div>
+                </div>
+                <p class="memorial-prayer">اللهم اغفر لهم وارحمهم وادخلهم الجنة برحمتك يا أرحم الراحمين</p>
+                <p class="admin-text">مسؤول الموقع: محمد الهواري</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Admin Dashboard Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content admin-modal">
+            <span class="close">&times;</span>
+            <h2>لوحة التحكم الإدارية</h2>
+            <div class="admin-sections">
+                <div class="admin-section">
+                    <h3>إدارة المحتوى</h3>
+                    <button class="admin-btn">
+                        <i class="fas fa-upload"></i> تحميل صور
+                    </button>
+                    <button class="admin-btn">
+                        <i class="fas fa-link"></i> إضافة روابط
+                    </button>
+                    <button class="admin-btn">
+                        <i class="fas fa-video"></i> تحميل فيديوهات
+                    </button>
+                </div>
+                <div class="admin-section">
+                    <h3>إدارة الأقسام</h3>
+                    <textarea placeholder="أضف/عدل محتوى الأقسام" class="admin-textarea"></textarea>
+                    <button class="admin-btn">
+                        <i class="fas fa-save"></i> حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 موقع رحمة ونور | جميع الحقوق محفوظة</p>
+        <p>مسؤول الموقع: محمد الهواري</p>
+    </footer>
+
+    <script>
+        // تفعيل الوضع الليلي
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeSwitch = document.getElementById('darkModeSwitch');
+        const body = document.body;
+
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            playSound('switch');
+        }
+
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        darkModeSwitch.addEventListener('change', toggleDarkMode);
+
+        // تحميل الوضع المحفوظ
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            darkModeSwitch.checked = true;
+        }
+
+        // فتح/إغلاق الإعدادات
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const closeSettings = document.getElementById('closeSettings');
+
+        settingsBtn.addEventListener('click', () => {
+            settingsPanel.classList.toggle('active');
+            playSound('click');
+        });
+
+        closeSettings.addEventListener('click', () => {
+            settingsPanel.classList.remove('active');
+            playSound('click');
+        });
+
+        // التحكم بحجم الخط
+        const fontSizeSlider = document.getElementById('fontSize');
+        fontSizeSlider.addEventListener('change', (e) => {
+            document.documentElement.style.fontSize = e.target.value + 'px';
+            localStorage.setItem('fontSize', e.target.value);
+        });
+
+        if (localStorage.getItem('fontSize')) {
+            const savedSize = localStorage.getItem('fontSize');
+            fontSizeSlider.value = savedSize;
+            document.documentElement.style.fontSize = savedSize + 'px';
+        }
+
+        // Modal الترحيب
+        const welcomeModal = document.getElementById('welcomeModal');
+        const closeModals = document.querySelectorAll('.close');
+        const closeBtn = document.getElementById('closeModal');
+
+        window.addEventListener('load', () => {
+            if (!localStorage.getItem('visited')) {
+                welcomeModal.classList.add('active');
+                playSound('azan');
+            }
+        });
+
+        closeModals.forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                modal.classList.remove('active');
+                if (modal === welcomeModal) {
+                    localStorage.setItem('visited', 'true');
+                }
+                playSound('click');
+            });
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            welcomeModal.classList.remove('active');
+            localStorage.setItem('visited', 'true');
+            playSound('click');
+        });
+
+        // لوحة التحكم الإدارية
+        const adminBtn = document.getElementById('adminBtn');
+        const adminModal = document.getElementById('adminModal');
+
+        adminBtn.addEventListener('click', () => {
+            const password = prompt('أدخل كلمة المرور الإدارية:');
+            if (password === 'admin123') {
+                adminModal.classList.add('active');
+                playSound('click');
+            } else if (password !== null) {
+                alert('كلمة المرور غير صحيحة!');
+            }
+        });
+
+        // أزرار لوحة التحكم
+        const adminBtns = document.querySelectorAll('.admin-btn');
+        adminBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.textContent.includes('صور')) {
+                    const file = prompt('أدخل رابط الصورة:');
+                    if (file) alert('تم تحميل الصورة: ' + file);
+                } else if (this.textContent.includes('روابط')) {
+                    const link = prompt('أدخل الرابط:');
+                    if (link) alert('تم إضافة الرابط: ' + link);
+                } else if (this.textContent.includes('فيديوهات')) {
+                    const video = prompt('أدخل رابط الفيديو:');
+                    if (video) alert('تم تحميل الفيديو: ' + video);
+                } else if (this.textContent.includes('حفظ')) {
+                    const textarea = document.querySelector('.admin-textarea');
+                    localStorage.setItem('siteContent', textarea.value);
+                    alert('تم حفظ المحتوى بنجاح!');
+                    playSound('save');
+                }
+                playSound('click');
+            });
+        });
+
+        // تحديد اتجاه القبلة
+        const qiblaDirection = document.getElementById('qibla-direction');
+        const compassNeedle = document.getElementById('compassNeedle');
+
+        function updateQiblaDirection() {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    
+                    const meccaLat = 21.4225;
+                    const meccaLon = 39.8262;
+                    
+                    const dLon = meccaLon - lon;
+                    const y = Math.sin(dLon) * Math.cos(meccaLat);
+                    const x = Math.cos(lat) * Math.sin(meccaLat) - Math.sin(lat) * Math.cos(meccaLat) * Math.cos(dLon);
+                    const angle = Math.atan2(y, x);
+                    const bearing = (angle * 180 / Math.PI + 360) % 360;
+                    
+                    compassNeedle.style.transform = `rotate(${bearing}deg)`;
+                    qiblaDirection.textContent = `اتجاه القبلة: ${Math.round(bearing)}° من الشمال`;
+                });
+            } else {
+                qiblaDirection.textContent = 'يرجى تفعيل خدمة الموقع لتحديد اتجاه القبلة';
+            }
+        }
+
+        updateQiblaDirection();
+
+        // تحديث أوقات الصلاة
+        function updatePrayerTimes() {
+            const times = {
+                'fajr-time': '05:30 AM',
+                'sunrise-time': '06:45 AM',
+                'dhuhr-time': '12:30 PM',
+                'asr-time': '03:45 PM',
+                'maghrib-time': '06:30 PM',
+                'isha-time': '08:00 PM'
+            };
+            
+            for (let [id, time] of Object.entries(times)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = time;
+                }
+            }
+        }
+
+        updatePrayerTimes();
+
+        // تشغيل ��لأصوات
+        function playSound(soundType) {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                if (soundType === 'click') {
+                    oscillator.frequency.value = 800;
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.1);
+                } else if (soundType === 'switch') {
+                    oscillator.frequency.value = 1000;
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.15);
+                } else if (soundType === 'save') {
+                    oscillator.frequency.value = 600;
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.2);
+                } else if (soundType === 'azan') {
+                    oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+                    oscillator.frequency.linearRampToValueAtTime(400, audioContext.currentTime + 1);
+                    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 2);
+                }
+            } catch (e) {
+                console.log('Audio context not available');
+            }
+        }
+
+        // إضافة صوت عند الضغط على الأزرار
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!btn.id.includes('darkMode')) {
+                    playSound('click');
+                }
+            });
+        });
+
+        // إضافة صوت عند الضغط على الروابط
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                playSound('click');
+            });
+        });
+
+        // إغلاق النوافذ المشروطة
+        window.addEventListener('click', (event) => {
+            if (event.target === welcomeModal) {
+                welcomeModal.classList.remove('active');
+            }
+            if (event.target === adminModal) {
+                adminModal.classList.remove('active');
+            }
+        });
+
+        // تحديث الموقع
+        setInterval(() => {
+            updateQiblaDirection();
+            updatePrayerTimes();
+        }, 60000);
+
+        // معالجة تغيير اللغة
+        const languageSelect = document.getElementById('language');
+        languageSelect.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            alert('تم تغيير اللغة إلى: ' + (lang === 'ar' ? 'العربية' : 'English'));
+        });
+
+        // حركة عند التمرير
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .prayer-card, .supplication-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        console.log('✨ تم تحميل موقع رحمة ونور بنجاح!');
+    </script>
+</body>
+</html>
