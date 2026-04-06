@@ -55,12 +55,24 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .logo h1 {
             font-size: 2.5rem;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #d4af37, #f0e68c, #d4af37);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .gold-text {
@@ -73,6 +85,7 @@
             list-style: none;
             gap: 2rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-link {
@@ -81,6 +94,7 @@
             transition: all 0.3s ease;
             font-weight: 500;
             position: relative;
+            font-size: 0.95rem;
         }
 
         .nav-link:hover {
@@ -121,7 +135,7 @@
             text-shadow: 0 0 10px var(--gold);
         }
 
-        /* Hero Section */
+        /* Hero Section مع خلفيات متحركة */
         .hero {
             position: relative;
             height: 500px;
@@ -137,14 +151,58 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="mosaic" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M50,0 L100,50 L50,100 L0,50 Z" fill="rgba(212,175,55,0.1)" stroke="rgba(212,175,55,0.3)"/></pattern></defs><rect width="1200" height="600" fill="%231a2a3a"/><rect width="1200" height="600" fill="url(%23mosaic)"/></svg>') repeat;
-            animation: slideBackground 20s linear infinite;
-            background-size: 200px 200px;
+            background: linear-gradient(-45deg, #1a2a3a, #2a3a4a, #1a2a3a, #2a3a4a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 1;
         }
 
-        @keyframes slideBackground {
-            0% { background-position: 0 0; }
-            100% { background-position: 200px 200px; }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* عناصر متحركة في الخلفية */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
         }
 
         .hero-content {
@@ -158,11 +216,13 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             animation: fadeInDown 1s ease;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
         }
 
         .hero-subtitle {
             font-size: 1.5rem;
             animation: fadeInUp 1s ease;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
         }
 
         @keyframes fadeInDown {
@@ -200,6 +260,37 @@
             background: white;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: moveGradient 10s ease infinite;
+        }
+
+        @keyframes moveGradient {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(100px, 100px); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         body.dark-mode .section {
@@ -212,6 +303,8 @@
             margin-bottom: 3rem;
             border-bottom: 3px solid var(--gold);
             padding-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .section-header h2 {
@@ -220,6 +313,11 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
+            background: linear-gradient(45deg, var(--gold), #f0e68c, var(--gold));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease infinite;
         }
 
         /* Prayer Times Grid */
@@ -227,6 +325,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .prayer-card {
@@ -238,6 +338,24 @@
             transition: all 0.3s ease;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prayer-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translate(-100%, -100%); }
+            100% { transform: translate(100%, 100%); }
         }
 
         .prayer-card:hover {
@@ -249,16 +367,28 @@
             font-size: 2.5rem;
             display: block;
             margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .prayer-card h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .prayer-time {
             font-size: 1.3rem;
             font-weight: bold;
+            position: relative;
+            z-index: 2;
         }
 
         /* Qibla Direction */
@@ -267,6 +397,8 @@
             flex-direction: column;
             align-items: center;
             gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .compass {
@@ -279,7 +411,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3);
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.5); }
         }
 
         .compass-needle {
@@ -289,6 +427,7 @@
             background: linear-gradient(to bottom, #ff4444, transparent);
             transform-origin: bottom center;
             animation: spin 20s linear infinite;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.6);
         }
 
         @keyframes spin {
@@ -303,12 +442,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
         }
 
         .direction {
             position: absolute;
             font-weight: bold;
             font-size: 1.2rem;
+            color: #000;
         }
 
         .direction.north { top: 10%; }
@@ -327,6 +468,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .step-card {
@@ -337,6 +480,23 @@
             text-align: center;
             position: relative;
             transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .step-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmerEffect 2s infinite;
+        }
+
+        @keyframes shimmerEffect {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .step-card:hover {
@@ -350,7 +510,7 @@
             right: 20px;
             width: 50px;
             height: 50px;
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold), #f0e68c);
             color: #000;
             border-radius: 50%;
             display: flex;
@@ -358,12 +518,16 @@
             justify-content: center;
             font-weight: bold;
             font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            z-index: 2;
         }
 
         .step-card h3 {
             margin-top: 1rem;
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* Content Grid */
@@ -371,6 +535,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .content-card {
@@ -379,6 +545,24 @@
             border-radius: 15px;
             border-right: 5px solid var(--gold);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: moveGradient2 8s ease infinite;
+        }
+
+        @keyframes moveGradient2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(50px, 50px) rotate(180deg); }
         }
 
         body.dark-mode .content-card {
@@ -395,6 +579,13 @@
             color: var(--gold);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-card p {
+            position: relative;
+            z-index: 1;
         }
 
         /* Supplications */
@@ -402,6 +593,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .supplication-card {
@@ -412,6 +605,24 @@
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .supplication-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
         }
 
         .supplication-card:hover {
@@ -422,11 +633,15 @@
         .supplication-card h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .supplication-card p {
             font-style: italic;
             line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
 
         /* Settings Panel */
@@ -513,6 +728,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         @keyframes fadeIn {
@@ -541,17 +757,6 @@
         body.dark-mode .modal-content {
             background-color: #2a2a2a;
             color: var(--text-light);
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .close {
@@ -638,6 +843,24 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine2 2s infinite;
+        }
+
+        @keyframes shine2 {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .admin-btn:hover {
@@ -672,12 +895,30 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
             color: #000;
             margin-top: 1.5rem;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: shimmerBtn 2s infinite;
+        }
+
+        @keyframes shimmerBtn {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .btn-primary:hover {
@@ -703,11 +944,30 @@
             border-radius: 0;
             box-shadow: none;
             margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memorial-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: moveGradient 15s ease infinite;
+        }
+
+        .memorial-content {
+            position: relative;
+            z-index: 1;
         }
 
         .memorial-content h2 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
         .memorial-list {
@@ -724,6 +984,19 @@
             border-right: 3px solid var(--gold);
             font-weight: 600;
             font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+            animation: slideInRight 0.6s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .memorial-prayer {
@@ -731,6 +1004,7 @@
             font-style: italic;
             margin-bottom: 2rem;
             color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
         }
 
         .admin-text {
@@ -746,6 +1020,17 @@
             text-align: center;
             padding: 2rem;
             border-top: 3px solid var(--gold);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
         }
 
         /* Responsive Design */
@@ -855,6 +1140,10 @@
             .section-header h2 {
                 font-size: 1.5rem;
             }
+
+            .settings-panel {
+                width: 100%;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -881,7 +1170,7 @@
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <h1 class="gold-text">رحمة ونور</h1>
+                <h1>رحمة ونور</h1>
             </div>
             <nav class="nav-menu">
                 <ul>
@@ -935,6 +1224,8 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="animated-background"></div>
+        <div class="stars" id="starsContainer"></div>
+        <div class="floating-shapes" id="shapesContainer"></div>
         <div class="hero-content">
             <h2 class="gold-text">بسم الله الرحمن الرحيم</h2>
             <p class="hero-subtitle">سبحان الله وبحمده، سبحان الله العظيم</p>
@@ -1046,7 +1337,7 @@
             <div class="section-header">
                 <h2><i class="fas fa-prayer-hands gold-text"></i> الصلوات</h2>
             </div>
-            <div class="prayers-grid">
+            <div class="content-grid">
                 <div class="content-card">
                     <h3>صلاة الصباح</h3>
                     <p>صلاة الفجر هي أول الصلوات المفروضة في اليوم. عن أبي هريرة قال: قال رسول الله صلى الله عليه وسلم: "أثقل الصلوات على المنافقين صلاة العشاء والفجر"</p>
@@ -1194,6 +1485,36 @@
     </footer>
 
     <script>
+        // إنشاء النجوم في الخلفية
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // إنشاء أشكال متحركة
+        function createShapes() {
+            const shapesContainer = document.getElementById('shapesContainer');
+            const shapes = ['◆', '◇', '○', '●', '□', '■'];
+            for (let i = 0; i < 15; i++) {
+                const shape = document.createElement('div');
+                shape.className = 'shape';
+                shape.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+                shape.style.left = Math.random() * 100 + '%';
+                shape.style.top = Math.random() * 100 + '%';
+                shape.style.fontSize = Math.random() * 30 + 20 + 'px';
+                shape.style.color = '#d4af37';
+                shape.style.animationDelay = Math.random() * 20 + 's';
+                shapesContainer.appendChild(shape);
+            }
+        }
+
         // تفعيل الوضع الليلي
         const darkModeToggle = document.getElementById('darkModeToggle');
         const darkModeSwitch = document.getElementById('darkModeSwitch');
@@ -1208,7 +1529,6 @@
         darkModeToggle.addEventListener('click', toggleDarkMode);
         darkModeSwitch.addEventListener('change', toggleDarkMode);
 
-        // تحميل الوضع المحفوظ
         if (localStorage.getItem('darkMode') === 'true') {
             body.classList.add('dark-mode');
             darkModeSwitch.checked = true;
@@ -1248,14 +1568,17 @@
         const closeBtn = document.getElementById('closeModal');
 
         window.addEventListener('load', () => {
+            createStars();
+            createShapes();
+            
             if (!localStorage.getItem('visited')) {
                 welcomeModal.classList.add('active');
                 playSound('azan');
             }
         });
 
-        closeModals.forEach(closeBtn => {
-            closeBtn.addEventListener('click', function() {
+        closeModals.forEach(closeBtnElement => {
+            closeBtnElement.addEventListener('click', function() {
                 const modal = this.closest('.modal');
                 modal.classList.remove('active');
                 if (modal === welcomeModal) {
@@ -1315,150 +1638,4 @@
         function updateQiblaDirection() {
             if ('geolocation' in navigator) {
                 navigator.geolocation.getCurrentPosition((position) => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    
-                    const meccaLat = 21.4225;
-                    const meccaLon = 39.8262;
-                    
-                    const dLon = meccaLon - lon;
-                    const y = Math.sin(dLon) * Math.cos(meccaLat);
-                    const x = Math.cos(lat) * Math.sin(meccaLat) - Math.sin(lat) * Math.cos(meccaLat) * Math.cos(dLon);
-                    const angle = Math.atan2(y, x);
-                    const bearing = (angle * 180 / Math.PI + 360) % 360;
-                    
-                    compassNeedle.style.transform = `rotate(${bearing}deg)`;
-                    qiblaDirection.textContent = `اتجاه القبلة: ${Math.round(bearing)}° من الشمال`;
-                });
-            } else {
-                qiblaDirection.textContent = 'يرجى تفعيل خدمة الموقع لتحديد اتجاه القبلة';
-            }
-        }
-
-        updateQiblaDirection();
-
-        // تحديث أوقات الصلاة
-        function updatePrayerTimes() {
-            const times = {
-                'fajr-time': '05:30 AM',
-                'sunrise-time': '06:45 AM',
-                'dhuhr-time': '12:30 PM',
-                'asr-time': '03:45 PM',
-                'maghrib-time': '06:30 PM',
-                'isha-time': '08:00 PM'
-            };
-            
-            for (let [id, time] of Object.entries(times)) {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.textContent = time;
-                }
-            }
-        }
-
-        updatePrayerTimes();
-
-        // تشغيل ��لأصوات
-        function playSound(soundType) {
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                if (soundType === 'click') {
-                    oscillator.frequency.value = 800;
-                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-                    oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.1);
-                } else if (soundType === 'switch') {
-                    oscillator.frequency.value = 1000;
-                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
-                    oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.15);
-                } else if (soundType === 'save') {
-                    oscillator.frequency.value = 600;
-                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
-                    oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.2);
-                } else if (soundType === 'azan') {
-                    oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
-                    oscillator.frequency.linearRampToValueAtTime(400, audioContext.currentTime + 1);
-                    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
-                    oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 2);
-                }
-            } catch (e) {
-                console.log('Audio context not available');
-            }
-        }
-
-        // إضافة صوت عند الضغط على الأزرار
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (!btn.id.includes('darkMode')) {
-                    playSound('click');
-                }
-            });
-        });
-
-        // إضافة صوت عند الضغط على الروابط
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                playSound('click');
-            });
-        });
-
-        // إغلاق النوافذ المشروطة
-        window.addEventListener('click', (event) => {
-            if (event.target === welcomeModal) {
-                welcomeModal.classList.remove('active');
-            }
-            if (event.target === adminModal) {
-                adminModal.classList.remove('active');
-            }
-        });
-
-        // تحديث الموقع
-        setInterval(() => {
-            updateQiblaDirection();
-            updatePrayerTimes();
-        }, 60000);
-
-        // معالجة تغيير اللغة
-        const languageSelect = document.getElementById('language');
-        languageSelect.addEventListener('change', (e) => {
-            const lang = e.target.value;
-            alert('تم تغيير اللغة إلى: ' + (lang === 'ar' ? 'العربية' : 'English'));
-        });
-
-        // حركة عند التمرير
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.section, .prayer-card, .supplication-card').forEach(el => {
-            el.style.opacity = '0';
-            observer.observe(el);
-        });
-
-        console.log('✨ تم تحميل موقع رحمة ونور بنجاح!');
-    </script>
-</body>
-</html>
+                    const lat = position.coords.
