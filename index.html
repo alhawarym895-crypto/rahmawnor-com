@@ -2,1640 +2,512 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رحمة ونور - موقع إسلامي متخصص</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>غرفة التحكم | نظام الباقات والخدمات المتكامل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --gold: #d4af37;
-            --dark-bg: #1a1a1a;
-            --light-bg: #f5f5f5;
-            --text-dark: #333;
-            --text-light: #fff;
-            --blue: #4a90e2;
-            --secondary-blue: #357abd;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            background: #03070f;
+            color: #f0f6ff;
+            font-size: 17px;
+            line-height: 1.5;
         }
-
-        body.dark-mode {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
+        @media (max-width: 700px) {
+            body { font-size: 16px; }
+            th, td, .btn-primary { font-size: 0.8rem; }
+            h1 { font-size: 1.6rem !important; }
         }
-
-        /* Header Styles */
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);
-            color: var(--text-light);
-            padding: 1rem 0;
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 280px;
+            background: #071120;
+            border-left: 1px solid #1f3a4c;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(45deg, #d4af37, #f0e68c, #d4af37);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s ease infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .gold-text {
-            color: var(--gold);
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        .nav-menu ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .nav-link:hover {
-            color: var(--gold);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .header-controls {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .control-btn {
-            background: transparent;
-            border: none;
-            color: var(--gold);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .control-btn:hover {
-            transform: scale(1.2);
-            text-shadow: 0 0 10px var(--gold);
-        }
-
-        /* Hero Section مع خلفيات متحركة */
-        .hero {
-            position: relative;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .animated-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(-45deg, #1a2a3a, #2a3a4a, #1a2a3a, #2a3a4a);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: 1;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* عناصر متحركة في الخلفية */
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0;
-            animation: twinkle 3s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-
-        .shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 20s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            color: var(--text-light);
-        }
-
-        .hero-content h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInDown 1s ease;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            animation: fadeInUp 1s ease;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Container & Section */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .section {
-            margin-bottom: 4rem;
-            padding: 3rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            animation: slideUp 0.6s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: moveGradient 10s ease infinite;
-        }
-
-        @keyframes moveGradient {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(100px, 100px); }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        body.dark-mode .section {
-            background: #2a2a2a;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.1);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            border-bottom: 3px solid var(--gold);
-            padding-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            background: linear-gradient(45deg, var(--gold), #f0e68c, var(--gold));
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s ease infinite;
-        }
-
-        /* Prayer Times Grid */
-        .prayer-times-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .prayer-card {
-            background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
-            color: #000;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .prayer-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translate(-100%, -100%); }
-            100% { transform: translate(100%, 100%); }
-        }
-
-        .prayer-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.5);
-        }
-
-        .prayer-card i {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 1rem;
-            animation: bounce 2s infinite;
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .prayer-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .prayer-time {
-            font-size: 1.3rem;
-            font-weight: bold;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Qibla Direction */
-        .qibla-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .compass {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #d4af37 0%, #a68b35 100%);
-            border: 5px solid var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3);
-            animation: pulseGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.5); }
-        }
-
-        .compass-needle {
-            position: absolute;
-            width: 4px;
-            height: 150px;
-            background: linear-gradient(to bottom, #ff4444, transparent);
-            transform-origin: bottom center;
-            animation: spin 20s linear infinite;
-            box-shadow: 0 0 10px rgba(255, 68, 68, 0.6);
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .compass-directions {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .direction {
-            position: absolute;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #000;
-        }
-
-        .direction.north { top: 10%; }
-        .direction.east { right: 10%; }
-        .direction.south { bottom: 10%; }
-        .direction.west { left: 10%; }
-
-        .qibla-info {
-            font-size: 1.2rem;
-            color: var(--gold);
-            font-weight: bold;
-        }
-
-        /* Ablution Steps */
-        .ablution-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-card {
-            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .step-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shimmerEffect 2s infinite;
-        }
-
-        @keyframes shimmerEffect {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .step-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--gold), #f0e68c);
-            color: #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-            z-index: 2;
-        }
-
-        .step-card h3 {
-            margin-top: 1rem;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Content Grid */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content-card {
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            border-right: 5px solid var(--gold);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .content-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            animation: moveGradient2 8s ease infinite;
-        }
-
-        @keyframes moveGradient2 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(50px, 50px) rotate(180deg); }
-        }
-
-        body.dark-mode .content-card {
-            background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
-            color: var(--text-light);
-        }
-
-        .content-card:hover {
-            transform: translateX(-10px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
-        }
-
-        .content-card h3 {
-            color: var(--gold);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content-card p {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Supplications */
-        .supplications-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .supplication-card {
-            background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
-            color: #000;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .supplication-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        .supplication-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.5);
-        }
-
-        .supplication-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .supplication-card p {
-            font-style: italic;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Settings Panel */
-        .settings-panel {
-            position: fixed;
-            right: -400px;
-            top: 0;
-            width: 400px;
             height: 100vh;
-            background: white;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
-            padding: 2rem;
-            transition: right 0.3s ease;
-            z-index: 2000;
-            overflow-y: auto;
         }
-
-        body.dark-mode .settings-panel {
-            background: #2a2a2a;
-            color: var(--text-light);
+        .logo-area {
+            padding: 28px 22px;
+            border-bottom: 1px solid #1f4058;
         }
-
-        .settings-panel.active {
-            right: 0;
-        }
-
-        .settings-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--blue);
-        }
-
-        .setting-item {
-            margin-bottom: 2rem;
+        .logo {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.4rem;
         }
-
-        .setting-item label {
-            font-weight: 500;
-        }
-
-        .setting-item input[type="range"] {
-            width: 150px;
-        }
-
-        .setting-item select {
-            padding: 0.5rem;
-            border: 2px solid var(--blue);
-            border-radius: 5px;
-            background: white;
-            color: var(--text-dark);
-        }
-
-        body.dark-mode .setting-item select {
-            background: #1a1a1a;
-            color: var(--text-light);
-        }
-
-        .switch {
-            width: 50px;
-            height: 25px;
-            appearance: none;
-            background: #ccc;
-            border-radius: 12px;
-            cursor: pointer;
-            outline: none;
-            transition: background 0.3s;
-        }
-
-        .switch:checked {
-            background: var(--blue);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            animation: fadeIn 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal.active {
+        .logo-icon {
+            background: #2d6ff7;
+            width: 46px;
+            height: 46px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 0 12px #2d6ff7aa;
         }
-
-        .modal-content {
-            background-color: white;
-            padding: 3rem;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            position: relative;
-            animation: slideUp 0.3s ease;
+        .nav {
+            padding: 24px 16px;
         }
-
-        body.dark-mode .modal-content {
-            background-color: #2a2a2a;
-            color: var(--text-light);
-        }
-
-        .close {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--gold);
-            transition: all 0.3s ease;
-        }
-
-        .close:hover {
-            transform: rotate(90deg);
-        }
-
-        .modal-content h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--gold);
-        }
-
-        .memorial-names {
-            margin: 2rem 0;
-            padding: 2rem;
-            background: #f5f5f5;
-            border-radius: 10px;
-        }
-
-        body.dark-mode .memorial-names {
-            background: #1a1a1a;
-        }
-
-        .memorial-names p {
-            margin: 0.5rem 0;
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: 18px;
+            margin-bottom: 8px;
+            color: #aac3e6;
             font-weight: 600;
-            color: var(--gold);
+            cursor: pointer;
+            transition: 0.2s;
         }
-
-        .memorial-text {
-            font-size: 1.2rem;
-            color: var(--gold);
-            margin: 1rem 0;
-            font-weight: bold;
-        }
-
-        /* Admin Modal */
-        .admin-modal {
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .admin-sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .admin-section {
-            background: #f5f5f5;
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        body.dark-mode .admin-section {
-            background: #1a1a1a;
-        }
-
-        .admin-section h3 {
-            color: var(--blue);
-            margin-bottom: 1rem;
-        }
-
-        .admin-btn {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+        .nav-item.active, .nav-item:hover {
+            background: #143048;
             color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
         }
-
-        .admin-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine2 2s infinite;
+        .user-card {
+            margin: 30px 16px 20px;
+            padding: 20px;
+            background: #0c1a2c;
+            border-radius: 28px;
+            border: 1px solid #2c577a;
         }
-
-        @keyframes shine2 {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .main-content {
+            flex: 1;
+            padding: 28px 32px;
+            background: #03070f;
         }
-
-        .admin-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.3);
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
         }
-
-        .admin-textarea {
-            width: 100%;
-            min-height: 150px;
-            padding: 1rem;
-            border: 2px solid var(--blue);
-            border-radius: 8px;
-            resize: vertical;
-            font-family: inherit;
-            background: white;
-            color: var(--text-dark);
+        .badge-live {
+            background: #e03a5e20;
+            color: #ff8a9f;
+            border: 1px solid #ff4d6d;
+            border-radius: 60px;
+            padding: 8px 20px;
+            font-weight: 700;
         }
-
-        body.dark-mode .admin-textarea {
-            background: #1a1a1a;
-            color: var(--text-light);
-            border-color: var(--gold);
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
         }
-
-        /* Buttons */
-        .btn-primary, .btn-secondary {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
+        .stat-card {
+            background: #0d1a2c;
+            border-radius: 30px;
+            border: 1px solid #234a66;
+            padding: 24px;
         }
-
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 32px 0 20px;
+        }
         .btn-primary {
-            background: linear-gradient(135deg, #d4af37 0%, #c9a227 100%);
-            color: #000;
-            margin-top: 1.5rem;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            animation: shimmerBtn 2s infinite;
-        }
-
-        @keyframes shimmerBtn {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-secondary {
-            background: #ccc;
-            color: #000;
-        }
-
-        .btn-secondary:hover {
-            background: #bbb;
-        }
-
-        /* Memorial Section */
-        .memorial-section {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);
+            background: #1e5ad9;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 60px;
             color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-radius: 0;
-            box-shadow: none;
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        .memorial-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            animation: moveGradient 15s ease infinite;
+        .members-table, .banned-table {
+            background: #0c1424;
+            border-radius: 30px;
+            border: 1px solid #1e3f58;
+            overflow-x: auto;
+            margin-bottom: 35px;
         }
-
-        .memorial-content {
-            position: relative;
-            z-index: 1;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
         }
-
-        .memorial-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        th {
+            text-align: right;
+            padding: 18px 20px;
+            background: #060f1a;
+            color: #cce4ff;
+            font-weight: 700;
         }
-
-        .memorial-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+        td {
+            padding: 14px 18px;
+            border-top: 1px solid #1c3850;
         }
-
-        .memorial-item {
-            background: rgba(212, 175, 55, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-right: 3px solid var(--gold);
-            font-weight: 600;
-            font-size: 1.1rem;
-            backdrop-filter: blur(10px);
-            animation: slideInRight 0.6s ease;
+        .banned-row {
+            background: #2a1b2a;
+            color: #ffb7c5;
+            text-decoration: line-through;
+            opacity: 0.85;
         }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .highlight-member {
+            background: #1c5577;
+            border-right: 4px solid #ffaa44;
         }
-
-        .memorial-prayer {
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: 2rem;
-            color: var(--gold);
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        .action-buttons button {
+            background: none;
+            border: none;
+            color: #8eb0e0;
+            font-size: 1.2rem;
+            margin: 0 8px;
+            cursor: pointer;
         }
-
-        .admin-text {
-            font-size: 1rem;
-            color: #ddd;
-            margin-top: 2rem;
+        .page-section {
+            display: none;
         }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: var(--text-light);
-            text-align: center;
-            padding: 2rem;
-            border-top: 3px solid var(--gold);
-            position: relative;
+        .page-section.active-section {
+            display: block;
         }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+        .modal-glass {
+            background: #0e1a2aee;
+            backdrop-filter: blur(14px);
+            border-radius: 40px;
+            border: 1px solid #2d6ff7;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .logo h1 {
-                font-size: 1.8rem;
-            }
-
-            .nav-menu ul {
-                gap: 0.5rem;
-                font-size: 0.9rem;
-            }
-
-            .hero {
-                height: 300px;
-            }
-
-            .hero-content h2 {
-                font-size: 1.8rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .prayer-times-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 1rem;
-            }
-
-            .prayer-card {
-                padding: 1rem;
-            }
-
-            .prayer-card i {
-                font-size: 2rem;
-            }
-
-            .compass {
-                width: 250px;
-                height: 250px;
-            }
-
-            .compass-needle {
-                height: 120px;
-            }
-
-            .settings-panel {
-                width: 100%;
-                right: -100%;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 2rem;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            .memorial-section {
-                padding: 2rem 1rem;
-            }
-
-            .memorial-section h2 {
-                font-size: 1.8rem;
-            }
+        input, select {
+            background: #07111f;
+            border: 1px solid #2d6ff7;
+            border-radius: 28px;
+            padding: 12px 18px;
+            color: white;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-bottom: 18px;
         }
-
-        @media (max-width: 480px) {
-            .nav-menu ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .logo h1 {
-                font-size: 1.5rem;
-            }
-
-            .hero {
-                height: 200px;
-            }
-
-            .hero-content h2 {
-                font-size: 1.5rem;
-            }
-
-            .prayer-times-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header h2 {
-                font-size: 1.5rem;
-            }
-
-            .settings-panel {
-                width: 100%;
-            }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #bbd4ff;
+        }
+        .badge-plan {
+            background: #1f4d6e;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 0.7rem;
+            display: inline-block;
+        }
+        @media (max-width: 780px) {
+            .sidebar { width: 90px; }
+            .logo span, .nav-item span, .user-card div:first-of-type { display: none; }
+            .nav-item { justify-content: center; }
+            .main-content { padding: 16px; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Modal ترحيبي -->
-    <div id="welcomeModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>هذا الموقع <span class="gold-text">رحمة ونور</span></h2>
-            <p>على أرواح الموتى الراحلين</p>
-            <div class="memorial-names">
-                <p><strong>الحاج رمضان السعيد الهواري</strong></p>
-                <p><strong>الحاج خير السعيد الهواري</strong></p>
-                <p><strong>الحاج حمدي السعيد الهواري</strong></p>
-                <p><strong>الحاجة عزيزة سعيد حسين</strong></p>
-            </div>
-            <p class="memorial-text">ادعوا لهم بالرحمة والمغفرة</p>
-            <button id="closeModal" class="btn-primary">ابدأ الآن</button>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="logo-area">
             <div class="logo">
-                <h1>رحمة ونور</h1>
-            </div>
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#home" class="nav-link">الرئيسية</a></li>
-                    <li><a href="#prayer-times" class="nav-link">أوقات الصلاة</a></li>
-                    <li><a href="#qibla" class="nav-link">القبلة</a></li>
-                    <li><a href="#ablution" class="nav-link">الوضوء</a></li>
-                    <li><a href="#prayers" class="nav-link">الصلوات</a></li>
-                    <li><a href="#quran" class="nav-link">القرآن</a></li>
-                    <li><a href="#prophets" class="nav-link">قصص الأنبياء</a></li>
-                    <li><a href="#supplications" class="nav-link">الأدعية</a></li>
-                </ul>
-            </nav>
-            <div class="header-controls">
-                <button id="darkModeToggle" class="control-btn" title="الوضع الليلي">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button id="settingsBtn" class="control-btn" title="الإعدادات">
-                    <i class="fas fa-cog"></i>
-                </button>
-                <button id="adminBtn" class="control-btn" title="لوحة التحكم">
-                    <i class="fas fa-lock"></i>
-                </button>
+                <div class="logo-icon"><i class="fas fa-server"></i></div>
+                <span>CtrlRoom</span>
             </div>
         </div>
-    </header>
-
-    <!-- Settings Panel -->
-    <div id="settingsPanel" class="settings-panel">
-        <div class="settings-content">
-            <h3>الإعدادات</h3>
-            <div class="setting-item">
-                <label>الوضع الليلي</label>
-                <input type="checkbox" id="darkModeSwitch" class="switch">
-            </div>
-            <div class="setting-item">
-                <label>حجم الخط</label>
-                <input type="range" id="fontSize" min="12" max="20" value="16">
-            </div>
-            <div class="setting-item">
-                <label>اللغة</label>
-                <select id="language">
-                    <option value="ar">العربية</option>
-                    <option value="en">English</option>
-                </select>
-            </div>
-            <button id="closeSettings" class="btn-secondary">إغلاق</button>
+        <div class="nav">
+            <div class="nav-item active" data-section="members"><i class="fas fa-users"></i><span>الأعضاء</span></div>
+            <div class="nav-item" data-section="banned"><i class="fas fa-ban"></i><span>المحظورون</span></div>
+            <div class="nav-item" data-section="logs"><i class="fas fa-history"></i><span>سجل العمليات</span></div>
         </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="animated-background"></div>
-        <div class="stars" id="starsContainer"></div>
-        <div class="floating-shapes" id="shapesContainer"></div>
-        <div class="hero-content">
-            <h2 class="gold-text">بسم الله الرحمن الرحيم</h2>
-            <p class="hero-subtitle">سبحان الله وبحمده، سبحان الله العظيم</p>
+        <div class="user-card">
+            <i class="fas fa-user-astronaut" style="font-size: 1.8rem;"></i>
+            <div style="margin-top: 10px;">مدير الباقات</div>
+            <div style="font-size: 0.7rem;">صلاحية كاملة</div>
         </div>
-    </section>
+    </aside>
 
-    <!-- Main Content -->
-    <main class="container">
+    <main class="main-content">
+        <div class="top-bar">
+            <div><h1 style="font-size: 2rem;">نظام إدارة الباقات والخدمات</h1><div>ليميتات · سرعات · باقات متكاملة</div></div>
+            <div class="badge-live"><i class="fas fa-circle" style="font-size: 0.6rem;"></i> تشغيل فائق</div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-title">إجمالي الأعضاء</div><div class="stat-value" id="totalMembersCount">99</div></div>
+            <div class="stat-card"><div class="stat-title">المحظورين</div><div class="stat-value" id="totalBannedCount">30</div></div>
+            <div class="stat-card"><div class="stat-title">باقات نشطة</div><div class="stat-value" id="activePlansCount">0</div></div>
+        </div>
 
-        <!-- Prayer Times Section -->
-        <section id="prayer-times" class="section">
+        <div id="membersSection" class="page-section active-section">
             <div class="section-header">
-                <h2><i class="fas fa-clock gold-text"></i> أوقات الصلاة</h2>
+                <h3><i class="fas fa-user-plus"></i> قاعدة الأعضاء (باقات وخدمات)</h3>
+                <button class="btn-primary" id="openAddMemberModalBtn"><i class="fas fa-plus-circle"></i> إضافة عضو + باقة</button>
             </div>
-            <div class="prayer-times-grid">
-                <div class="prayer-card">
-                    <i class="fas fa-sunrise"></i>
-                    <h3>الفجر</h3>
-                    <p class="prayer-time" id="fajr-time">05:30 AM</p>
-                </div>
-                <div class="prayer-card">
-                    <i class="fas fa-sun"></i>
-                    <h3>الشروق</h3>
-                    <p class="prayer-time" id="sunrise-time">06:45 AM</p>
-                </div>
-                <div class="prayer-card">
-                    <i class="fas fa-cloud-sun"></i>
-                    <h3>الظهر</h3>
-                    <p class="prayer-time" id="dhuhr-time">12:30 PM</p>
-                </div>
-                <div class="prayer-card">
-                    <i class="fas fa-cloud"></i>
-                    <h3>العصر</h3>
-                    <p class="prayer-time" id="asr-time">03:45 PM</p>
-                </div>
-                <div class="prayer-card">
-                    <i class="fas fa-sunset"></i>
-                    <h3>المغرب</h3>
-                    <p class="prayer-time" id="maghrib-time">06:30 PM</p>
-                </div>
-                <div class="prayer-card">
-                    <i class="fas fa-moon"></i>
-                    <h3>العشاء</h3>
-                    <p class="prayer-time" id="isha-time">08:00 PM</p>
-                </div>
+            <div class="members-table">
+                <table>
+                    <thead><tr><th>#</th><th>الاسم الكامل</th><th>الباقة / الخدمات</th><th>الليميتات</th><th>الإجراءات</th></tr></thead>
+                    <tbody id="membersTbody"></tbody>
+                </table>
             </div>
-        </section>
+        </div>
 
-        <!-- Qibla Direction Section -->
-        <section id="qibla" class="section">
-            <div class="section-header">
-                <h2><i class="fas fa-compass gold-text"></i> اتجاه القبلة</h2>
+        <div id="bannedSection" class="page-section">
+            <div class="section-header"><h3><i class="fas fa-gavel"></i> الأعضاء المحظورون</h3></div>
+            <div class="members-table">
+                <table><thead><tr><th>#</th><th>الاسم</th><th>سبب الحظر</th><th>التاريخ</th></tr></thead><tbody id="bannedTbody"></tbody></table>
             </div>
-            <div class="qibla-container">
-                <div class="compass">
-                    <div class="compass-needle" id="compassNeedle"></div>
-                    <div class="compass-directions">
-                        <span class="direction north">الشمال</span>
-                        <span class="direction east">الشرق</span>
-                        <span class="direction south">الجنوب</span>
-                        <span class="direction west">الغرب</span>
-                    </div>
-                </div>
-                <p id="qibla-direction" class="qibla-info">جاري تحديد اتجاه القبلة...</p>
-            </div>
-        </section>
+        </div>
 
-        <!-- Ablution Guide Section -->
-        <section id="ablution" class="section">
-            <div class="section-header">
-                <h2><i class="fas fa-water gold-text"></i> خطوات الوضوء</h2>
+        <div id="logsSection" class="page-section">
+            <div class="section-header"><h3><i class="fas fa-list-ul"></i> سجل العمليات والخدمات</h3></div>
+            <div style="background:#0b1424; border-radius: 28px; border:1px solid #1e3f58; padding: 20px; height: 280px; overflow-y: auto;">
+                <div id="eventLogs" style="font-family: monospace; font-size: 0.8rem;"></div>
             </div>
-            <div class="ablution-steps">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>النية</h3>
-                    <p>استشعر نية الوضوء لقبول الصلاة</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>غسل الوجه</h3>
-                    <p>اغسل وجهك من منبت الشعر إلى الذقن</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>غسل اليدين</h3>
-                    <p>اغسل يديك من الأصابع إلى المرفقين مرتين أو ثلاثاً</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>المسح على الرأس</h3>
-                    <p>امسح رأسك من مقدمته إلى مؤخرته</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">5</div>
-                    <h3>مسح الأذنين</h3>
-                    <p>امسح أذنيك بنفس ماء الرأس</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">6</div>
-                    <h3>غسل الأرجل</h3>
-                    <p>اغسل قدميك من الأصابع إلى الكعبين مرتين أو ثلاثاً</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prayers Section -->
-        <section id="prayers" class="section">
-            <div class="section-header">
-                <h2><i class="fas fa-prayer-hands gold-text"></i> الصلوات</h2>
-            </div>
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3>صلاة الصباح</h3>
-                    <p>صلاة الفجر هي أول الصلوات المفروضة في اليوم. عن أبي هريرة قال: قال رسول الله صلى الله عليه وسلم: "أثقل الصلوات على المنافقين صلاة العشاء والفجر"</p>
-                </div>
-                <div class="content-card">
-                    <h3>صلاة المساء</h3>
-                    <p>تشمل صلوات العصر والمغرب والعشاء. عن عائشة رضي الله عنها: "كان النبي صلى الله عليه وسلم يصلي من الليل في بيته"</p>
-                </div>
-                <div class="content-card">
-                    <h3>الصلوات الخمس</h3>
-                    <p>الصلوات المفروضة على المسلمين هي: الفجر، الظهر، العصر، المغرب، والعشاء. وهي عماد الدين وأساس العبادة في الإسلام.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quran Section -->
-        <section id="quran" class="section">
-            <div class="section-header">
-                <h2><i class="fas fa-book gold-text"></i> القرآن الكريم</h2>
-            </div>
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3>قراءة القرآن</h3>
-                    <p>القرآن الكريم هو كلام الله المنزل على محمد صلى الله عليه وسلم، وهو آخر الكتب السماوية. آياته تتضمن الهداية والرحمة لجميع الناس.</p>
-                </div>
-                <div class="content-card">
-                    <h3>فضائل تلاوة القرآن</h3>
-                    <p>عن أبي موسى الأشعري عن النبي صلى الله عليه وسلم قال: "الذي يقرأ القرآن وهو ماهر به مع السفرة الكرام البررة"</p>
-                </div>
-                <div class="content-card">
-                    <h3>أحكام التجويد</h3>
-                    <p>تجويد القرآن هو إخراج كل حرف من مخرجه وإعطاؤه حقه. وهو واجب على كل مسلم يتلو القرآن الكريم.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prophets Stories Section -->
-        <section id="prophets" class="section">
-            <div class="section-header">
-                <h2><i class="fas fa-users gold-text"></i> قصص الأنبياء</h2>
-            </div>
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3>سيدنا محمد صلى الله عليه وسلم</h3>
-                    <p>محمد بن عبدالله هو خاتم الأنبياء والمرسلين. ولد في مكة المكرمة وأرسل بالإسلام رحمة للعالمين.</p>
-                </div>
-                <div class="content-card">
-                    <h3>سيدنا إبراهيم عليه السلام</h3>
-                    <p>إبراهيم عليه السلام هو خليل الرحمن وأبو الأنبياء. دعا قومه إلى التوحيد والإيمان بالله الواحد.</p>
-                </div>
-                <div class="content-card">
-                    <h3>سيدنا موسى عليه السلام</h3>
-                    <p>موسى عليه السلام أرسل إلى بني إسرائيل بالتوراة. حمل عصاه وأنقذ قومه من استعباد فرعون وجنوده.</p>
-                </div>
-                <div class="content-card">
-                    <h3>سيدنا عيسى عليه السلام</h3>
-                    <p>عيسى عليه السلام هو كلمة الله وروحه. بشّر الناس برسالة التوحيد والتسامح والرحمة.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Supplications Section -->
-        <section id="supplications" class="section">
-            <div class="section-header">
-                <h2><i class="fas fa-hands-praying gold-text"></i> الأدعية</h2>
-            </div>
-            <div class="supplications-list">
-                <div class="supplication-card">
-                    <h3>دعاء الصباح</h3>
-                    <p>"اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور"</p>
-                </div>
-                <div class="supplication-card">
-                    <h3>دعاء المساء</h3>
-                    <p>"اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير"</p>
-                </div>
-                <div class="supplication-card">
-                    <h3>دعاء الاستيقاظ</h3>
-                    <p>"الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور"</p>
-                </div>
-                <div class="supplication-card">
-                    <h3>دعاء قبل النوم</h3>
-                    <p>"اللهم أسلمت وجهي إليك وفوضت أمري إليك وألجأت ظهري إليك رغبة ورهبة إليك"</p>
-                </div>
-                <div class="supplication-card">
-                    <h3>دعاء للموتى</h3>
-                    <p>"اللهم اغفر لهم وارحمهم وعافهم واعف عنهم وأكرم نزلهم ووسع مدخلهم"</p>
-                </div>
-                <div class="supplication-card">
-                    <h3>دعاء العفو</h3>
-                    <p>"اللهم إنك عفو تحب العفو فاعف عنا"</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Memorial Section -->
-        <section class="memorial-section">
-            <div class="memorial-content">
-                <h2 class="gold-text">في ذكرهم رحمة ونور</h2>
-                <div class="memorial-list">
-                    <div class="memorial-item">الحاج رمضان السعيد الهواري</div>
-                    <div class="memorial-item">الحاج خير السعيد الهواري</div>
-                    <div class="memorial-item">الحاج حمدي السعيد الهواري</div>
-                    <div class="memorial-item">الحاجة عزيزة سعيد حسين</div>
-                </div>
-                <p class="memorial-prayer">اللهم اغفر لهم وارحمهم وادخلهم الجنة برحمتك يا أرحم الراحمين</p>
-                <p class="admin-text">مسؤول الموقع: محمد الهواري</p>
-            </div>
-        </section>
-
+        </div>
+        <div class="footer-mock">© نظام الباقات المتكامل - ليميتات، سرعات، اشتراكات</div>
     </main>
+</div>
 
-    <!-- Admin Dashboard Modal -->
-    <div id="adminModal" class="modal">
-        <div class="modal-content admin-modal">
-            <span class="close">&times;</span>
-            <h2>لوحة التحكم الإدارية</h2>
-            <div class="admin-sections">
-                <div class="admin-section">
-                    <h3>إدارة المحتوى</h3>
-                    <button class="admin-btn">
-                        <i class="fas fa-upload"></i> تحميل صور
-                    </button>
-                    <button class="admin-btn">
-                        <i class="fas fa-link"></i> إضافة روابط
-                    </button>
-                    <button class="admin-btn">
-                        <i class="fas fa-video"></i> تحميل فيديوهات
-                    </button>
-                </div>
-                <div class="admin-section">
-                    <h3>إدارة الأقسام</h3>
-                    <textarea placeholder="أضف/عدل محتوى الأقسام" class="admin-textarea"></textarea>
-                    <button class="admin-btn">
-                        <i class="fas fa-save"></i> حفظ
-                    </button>
-                </div>
-            </div>
+<!-- مودال متكامل لإضافة عضو مع باقة وخدمات -->
+<div id="memberModal" style="display:none; position:fixed; top:0;left:0;width:100%;height:100%; background:#000000cc; backdrop-filter:blur(8px); align-items:center;justify-content:center;z-index:1200;">
+    <div class="modal-glass" style="background:#0e1a2a; border-radius: 40px; padding: 32px; width:90%; max-width:550px;">
+        <h3 style="margin-bottom:20px;"><i class="fas fa-tags"></i> إضافة عضو جديد + باقة متكاملة</h3>
+        <input type="text" id="memberName" placeholder="الاسم الكامل (مثال: أحمد علي)" autocomplete="off">
+        
+        <label>📡 اختيار الباقة</label>
+        <select id="memberPlan">
+            <option value="Fiber Ultra 500Mb">Fiber Ultra 500Mb</option>
+            <option value="5G Power 300Mb">5G Power 300Mb</option>
+            <option value="LTE Pro 150Mb">LTE Pro 150Mb</option>
+            <option value="Starlink Premium 200Mb">Starlink Premium 200Mb</option>
+        </select>
+        
+        <label>⚡ الليميتات (سرعة/استهلاك/مدة)</label>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <input type="text" id="speedLimit" placeholder="السرعة (مثال: 300 ميجابت)" style="width:32%;">
+            <input type="text" id="dataLimit" placeholder="الاستهلاك (مثال: 500 جيجا)" style="width:32%;">
+            <input type="text" id="durationLimit" placeholder="المدة (مثال: 30 يوم)" style="width:32%;">
+        </div>
+        
+        <label>🎁 خدمات إضافية (اختياري)</label>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;">
+            <label style="display:inline-flex; align-items:center; gap:6px;"><input type="checkbox" value="VPN مضمّن"> VPN مضمّن</label>
+            <label style="display:inline-flex; align-items:center; gap:6px;"><input type="checkbox" value="حماية DDOS"> حماية DDOS</label>
+            <label style="display:inline-flex; align-items:center; gap:6px;"><input type="checkbox" value="دعم فني 24/7"> دعم فني 24/7</label>
+            <label style="display:inline-flex; align-items:center; gap:6px;"><input type="checkbox" value="IP ثابت"> IP ثابت</label>
+        </div>
+        
+        <div style="display:flex; gap:16px; margin-top:12px;">
+            <button class="btn-primary" id="confirmAddMember">إضافة العضو والخدمات</button>
+            <button class="btn-primary" id="closeModalBtn" style="background:#5a3a3a;">إلغاء</button>
         </div>
     </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2026 موقع رحمة ونور | جميع الحقوق محفوظة</p>
-        <p>مسؤول الموقع: محمد الهواري</p>
-    </footer>
-
-    <script>
-        // إنشاء النجوم في الخلفية
-        function createStars() {
-            const starsContainer = document.getElementById('starsContainer');
-            for (let i = 0; i < 50; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // إنشاء أشكال متحركة
-        function createShapes() {
-            const shapesContainer = document.getElementById('shapesContainer');
-            const shapes = ['◆', '◇', '○', '●', '□', '■'];
-            for (let i = 0; i < 15; i++) {
-                const shape = document.createElement('div');
-                shape.className = 'shape';
-                shape.textContent = shapes[Math.floor(Math.random() * shapes.length)];
-                shape.style.left = Math.random() * 100 + '%';
-                shape.style.top = Math.random() * 100 + '%';
-                shape.style.fontSize = Math.random() * 30 + 20 + 'px';
-                shape.style.color = '#d4af37';
-                shape.style.animationDelay = Math.random() * 20 + 's';
-                shapesContainer.appendChild(shape);
-            }
-        }
-
-        // تفعيل الوضع الليلي
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const darkModeSwitch = document.getElementById('darkModeSwitch');
-        const body = document.body;
-
-        function toggleDarkMode() {
-            body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
-            playSound('switch');
-        }
-
-        darkModeToggle.addEventListener('click', toggleDarkMode);
-        darkModeSwitch.addEventListener('change', toggleDarkMode);
-
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeSwitch.checked = true;
-        }
-
-        // فتح/إغلاق الإعدادات
-        const settingsBtn = document.getElementById('settingsBtn');
-        const settingsPanel = document.getElementById('settingsPanel');
-        const closeSettings = document.getElementById('closeSettings');
-
-        settingsBtn.addEventListener('click', () => {
-            settingsPanel.classList.toggle('active');
-            playSound('click');
+<script>
+    // بيانات أساسية
+    const firstNames = ["أحمد", "محمد", "سارة", "نور", "علي", "فاطمة", "ياسر", "ليلى", "خالد", "منى", "كريم", "هبة", "سامر", "دينا", "طارق", "ريم", "جمانة", "مازن", "أمجد", "عبير"];
+    const lastNames = ["حسن", "محمود", "إبراهيم", "عبد الله", "الغامدي", "الشمري", "الزهراني", "العمري", "النوري", "الحربي", "الصبحي", "الهواري", "المالكي"];
+    function randomName() { return firstNames[Math.floor(Math.random() * firstNames.length)] + " " + lastNames[Math.floor(Math.random() * lastNames.length)]; }
+    
+    let members = [];
+    for (let i = 1; i <= 99; i++) {
+        let name = randomName();
+        if (i === 70) name = "ميادة صبحي السعيد مرسي الهواري";
+        members.push({ 
+            id: i, name, 
+            plan: "Fiber Ultra 500Mb", 
+            limits: "سرعة: 500 ميجابت · استهلاك: غير محدود · مدة: شهر", 
+            extraServices: "VPN مضمّن, IP ثابت" 
         });
-
-        closeSettings.addEventListener('click', () => {
-            settingsPanel.classList.remove('active');
-            playSound('click');
+    }
+    let nextId = 100;
+    
+    let bannedList = [
+        { id: 1, name: "ياسر المنصوري", reason: "انتهاك سياسة الخوادم", date: "2025-01-15" },
+        { id: 2, name: "ليلى الخالدي", reason: "اختراق وهمي", date: "2025-02-20" },
+        { id: 3, name: "طارق الزهراني", reason: "تعدد الحسابات", date: "2025-03-05" },
+        { id: 4, name: "عبير النجدي", reason: "إرسال سبام", date: "2025-03-22" },
+        { id: 5, name: "خالد الشمري", reason: "حظر أمني", date: "2025-04-01" },
+        { id: 6, name: "منى العتيبي", reason: "تزوير بيانات", date: "2025-04-10" },
+        { id: 7, name: "سامر الحربي", reason: "هجمات تخريبية", date: "2025-04-12" },
+        { id: 8, name: "هدى القحطاني", reason: "انتهاك سياسة الخوادم", date: "2025-01-20" },
+        { id: 9, name: "عبد العزيز الدوسري", reason: "اختراق وهمي", date: "2025-02-14" },
+        { id: 10, name: "شيماء السبيعي", reason: "تعدد الحسابات", date: "2025-03-18" },
+        { id: 11, name: "نواف المطيري", reason: "إرسال سبام", date: "2025-03-30" },
+        { id: 12, name: "غادة العنزي", reason: "حظر أمني", date: "2025-04-05" },
+        { id: 13, name: "فهد العجمي", reason: "تزوير بيانات", date: "2025-04-09" },
+        { id: 14, name: "مها السهلي", reason: "هجمات تخريبية", date: "2025-04-11" },
+        { id: 15, name: "عمر الغامدي", reason: "انتهاك سياسة الخوادم", date: "2025-02-01" },
+        { id: 16, name: "هيفاء الحارثي", reason: "اختراق وهمي", date: "2025-02-28" },
+        { id: 17, name: "محمد الرشيدي", reason: "تعدد الحسابات", date: "2025-03-10" },
+        { id: 18, name: "أماني العتيبي", reason: "إرسال سبام", date: "2025-03-25" },
+        { id: 19, name: "فيصل السديري", reason: "حظر أمني", date: "2025-04-02" },
+        { id: 20, name: "ريما الجبر", reason: "تزوير بيانات", date: "2025-04-07" },
+        { id: 21, name: "سلطان النفيسة", reason: "هجمات تخريبية", date: "2025-04-13" },
+        { id: 22, name: "جواهر العتيبي", reason: "انتهاك سياسة الخوادم", date: "2025-01-25" },
+        { id: 23, name: "ناصر اليامي", reason: "اختراق وهمي", date: "2025-02-18" },
+        { id: 24, name: "وفاء العبيد", reason: "تعدد الحسابات", date: "2025-03-12" },
+        { id: 25, name: "ماجد السالم", reason: "إرسال سبام", date: "2025-03-28" },
+        { id: 26, name: "حصة المزروعي", reason: "حظر أمني", date: "2025-04-03" },
+        { id: 27, name: "تركي الحربي", reason: "تزوير بيانات", date: "2025-04-08" },
+        { id: 28, name: "سميرة الخالدي", reason: "هجمات تخريبية", date: "2025-04-14" },
+        { id: 29, name: "راشد الشلهوب", reason: "انتهاك سياسة الخوادم", date: "2025-02-10" },
+        { id: 30, name: "فريال المالكي", reason: "اختراق وهمي", date: "2025-03-15" }
+    ];
+    let nextBanId = 31;
+    
+    let eventLogs = [];
+    function addEventLog(action, detail) {
+        const time = new Date().toLocaleTimeString('ar-EG');
+        eventLogs.unshift(`[${time}] ${action}: ${detail}`);
+        if(eventLogs.length > 40) eventLogs.pop();
+        renderEventLog();
+    }
+    function renderEventLog() {
+        const container = document.getElementById("eventLogs");
+        if(container) container.innerHTML = eventLogs.map(l => `<div>📌 ${l}</div>`).join('');
+    }
+    
+    function renderMembers() {
+        const tbody = document.getElementById("membersTbody");
+        tbody.innerHTML = "";
+        members.forEach(m => {
+            const row = tbody.insertRow();
+            if (m.id === 70) row.classList.add("highlight-member");
+            row.insertCell(0).innerText = m.id;
+            row.insertCell(1).innerText = m.name;
+            row.insertCell(2).innerHTML = `<span class="badge-plan">${m.plan}</span><br><small>${m.extraServices || "—"}</small>`;
+            row.insertCell(3).innerText = m.limits;
+            const actionCell = row.insertCell(4);
+            actionCell.innerHTML = `<div class="action-buttons">
+                <button class="ban-member-btn" data-id="${m.id}" data-name="${m.name.replace(/"/g, '&quot;')}" title="حظر"><i class="fas fa-gavel"></i></button>
+                <button class="delete-member-btn" data-id="${m.id}" title="حذف"><i class="fas fa-trash-alt"></i></button>
+            </div>`;
         });
-
-        // التحكم بحجم الخط
-        const fontSizeSlider = document.getElementById('fontSize');
-        fontSizeSlider.addEventListener('change', (e) => {
-            document.documentElement.style.fontSize = e.target.value + 'px';
-            localStorage.setItem('fontSize', e.target.value);
-        });
-
-        if (localStorage.getItem('fontSize')) {
-            const savedSize = localStorage.getItem('fontSize');
-            fontSizeSlider.value = savedSize;
-            document.documentElement.style.fontSize = savedSize + 'px';
-        }
-
-        // Modal الترحيب
-        const welcomeModal = document.getElementById('welcomeModal');
-        const closeModals = document.querySelectorAll('.close');
-        const closeBtn = document.getElementById('closeModal');
-
-        window.addEventListener('load', () => {
-            createStars();
-            createShapes();
-            
-            if (!localStorage.getItem('visited')) {
-                welcomeModal.classList.add('active');
-                playSound('azan');
-            }
-        });
-
-        closeModals.forEach(closeBtnElement => {
-            closeBtnElement.addEventListener('click', function() {
-                const modal = this.closest('.modal');
-                modal.classList.remove('active');
-                if (modal === welcomeModal) {
-                    localStorage.setItem('visited', 'true');
+        document.getElementById("totalMembersCount").innerText = members.length;
+        document.getElementById("activePlansCount").innerText = members.filter(m => m.plan && m.plan !== "").length;
+        
+        document.querySelectorAll(".ban-member-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = parseInt(btn.getAttribute("data-id"));
+                const name = btn.getAttribute("data-name");
+                if(confirm(`حظر العضو "${name}" ونقله للمحظورين؟`)) {
+                    const idx = members.findIndex(m => m.id === id);
+                    if(idx !== -1) {
+                        bannedList.push({ id: nextBanId++, name: members[idx].name, reason: "حظر يدوي من المدير", date: new Date().toISOString().slice(0,10) });
+                        members.splice(idx,1);
+                        renderMembers();
+                        renderBanned();
+                        addEventLog("حظر عضو", name);
+                    }
                 }
-                playSound('click');
             });
         });
-
-        document.getElementById('closeModal').addEventListener('click', () => {
-            welcomeModal.classList.remove('active');
-            localStorage.setItem('visited', 'true');
-            playSound('click');
-        });
-
-        // لوحة التحكم الإدارية
-        const adminBtn = document.getElementById('adminBtn');
-        const adminModal = document.getElementById('adminModal');
-
-        adminBtn.addEventListener('click', () => {
-            const password = prompt('أدخل كلمة المرور الإدارية:');
-            if (password === 'admin123') {
-                adminModal.classList.add('active');
-                playSound('click');
-            } else if (password !== null) {
-                alert('كلمة المرور غير صحيحة!');
-            }
-        });
-
-        // أزرار لوحة التحكم
-        const adminBtns = document.querySelectorAll('.admin-btn');
-        adminBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (this.textContent.includes('صور')) {
-                    const file = prompt('أدخل رابط الصورة:');
-                    if (file) alert('تم تحميل الصورة: ' + file);
-                } else if (this.textContent.includes('روابط')) {
-                    const link = prompt('أدخل الرابط:');
-                    if (link) alert('تم إضافة الرابط: ' + link);
-                } else if (this.textContent.includes('فيديوهات')) {
-                    const video = prompt('أدخل رابط الفيديو:');
-                    if (video) alert('تم تحميل الفيديو: ' + video);
-                } else if (this.textContent.includes('حفظ')) {
-                    const textarea = document.querySelector('.admin-textarea');
-                    localStorage.setItem('siteContent', textarea.value);
-                    alert('تم حفظ المحتوى بنجاح!');
-                    playSound('save');
+        
+        document.querySelectorAll(".delete-member-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = parseInt(btn.getAttribute("data-id"));
+                const member = members.find(m => m.id === id);
+                if(member && confirm(`حذف ${member.name} نهائياً؟`)) {
+                    members = members.filter(m => m.id !== id);
+                    renderMembers();
+                    addEventLog("حذف عضو", member.name);
                 }
-                playSound('click');
             });
         });
-
-        // تحديد اتجاه القبلة
-        const qiblaDirection = document.getElementById('qibla-direction');
-        const compassNeedle = document.getElementById('compassNeedle');
-
-        function updateQiblaDirection() {
-            if ('geolocation' in navigator) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const lat = position.coords.
+    }
+    
+    function renderBanned() {
+        const tbody = document.getElementById("bannedTbody");
+        tbody.innerHTML = "";
+        bannedList.forEach(b => {
+            const row = tbody.insertRow();
+            row.classList.add("banned-row");
+            row.insertCell(0).innerText = b.id;
+            row.insertCell(1).innerText = b.name;
+            row.insertCell(2).innerText = b.reason;
+            row.insertCell(3).innerText = b.date;
+        });
+        document.getElementById("totalBannedCount").innerText = bannedList.length;
+    }
+    
+    function addMemberWithPlan(name, plan, speed, data, duration, servicesArray) {
+        const newId = nextId++;
+        const limitsText = `سرعة: ${speed || "غير محدد"} · استهلاك: ${data || "غير محدد"} · مدة: ${duration || "غير محدد"}`;
+        const servicesText = servicesArray.length ? servicesArray.join(", ") : "بدون خدمات إضافية";
+        members.push({
+            id: newId,
+            name: name.trim(),
+            plan: plan,
+            limits: limitsText,
+            extraServices: servicesText
+        });
+        renderMembers();
+        addEventLog("إضافة عضو + باقة", `${name} | ${plan} | ${limitsText}`);
+    }
+    
+    // مودال الإضافة المتكاملة
+    const modal = document.getElementById("memberModal");
+    const openBtn = document.getElementById("openAddMemberModalBtn");
+    const closeModal = document.getElementById("closeModalBtn");
+    const confirmAdd = document.getElementById("confirmAddMember");
+    openBtn.addEventListener("click", () => modal.style.display = "flex");
+    closeModal.addEventListener("click", () => modal.style.display = "none");
+    confirmAdd.addEventListener("click", () => {
+        const fullName = document.getElementById("memberName").value;
+        if(!fullName.trim()) { alert("يرجى إدخال اسم العضو"); return; }
+        const plan = document.getElementById("memberPlan").value;
+        const speed = document.getElementById("speedLimit").value;
+        const data = document.getElementById("dataLimit").value;
+        const duration = document.getElementById("durationLimit").value;
+        const services = Array.from(document.querySelectorAll("#memberModal input[type=checkbox]:checked")).map(cb => cb.value);
+        addMemberWithPlan(fullName, plan, speed, data, duration, services);
+        document.getElementById("memberName").value = "";
+        document.getElementById("speedLimit").value = "";
+        document.getElementById("dataLimit").value = "";
+        document.getElementById("durationLimit").value = "";
+        document.querySelectorAll("#memberModal input[type=checkbox]").forEach(cb => cb.checked = false);
+        modal.style.display = "none";
+        setActiveSection("members");
+    });
+    window.addEventListener("click", (e) => { if(e.target === modal) modal.style.display = "none"; });
+    
+    // التنقل
+    const sections = { members: "membersSection", banned: "bannedSection", logs: "logsSection" };
+    function setActiveSection(sectionId) {
+        Object.values(sections).forEach(id => document.getElementById(id).classList.remove("active-section"));
+        document.getElementById(sections[sectionId]).classList.add("active-section");
+        document.querySelectorAll(".nav-item").forEach(item => {
+            item.classList.remove("active");
+            if(item.getAttribute("data-section") === sectionId) item.classList.add("active");
+        });
+    }
+    document.querySelectorAll(".nav-item").forEach(item => {
+        item.addEventListener("click", () => setActiveSection(item.getAttribute("data-section")));
+    });
+    
+    renderMembers();
+    renderBanned();
+    addEventLog("بدء النظام", "إدارة الباقات والخدمات المتكاملة");
+    setActiveSection("members");
+</script>
+</body>
+</html>
